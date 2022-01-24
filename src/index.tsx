@@ -11,30 +11,45 @@ import {
 const ITEM_WIDTH = 72;
 const ITEM_HEIGHT = 72;
 const ITEM_OFFSET = ITEM_WIDTH + 18;
+
 interface Props {
   selectedDate: Date;
   setSelectedDate: (date: Date) => void;
+  renderItem?: ({
+    item,
+    dayNumber,
+    monthNumber,
+    dayString,
+    isActive,
+  }: {
+    item: any;
+    dayNumber: number;
+    monthNumber: number;
+    dayString: string;
+    isActive: boolean;
+  }) => JSX.Element;
+  dateRange?: number;
 }
 
-function dateAddDays(date: Date, days: number) {
+const dateAddDays = (date: Date, days: number) => {
   var result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
-}
+};
 
-function getDayString(date: Date): string {
+const getDayString = (date: Date): string => {
   return date.toString().split(' ')[0];
-}
+};
 
-function isSameDay(date1: Date, date2: Date): boolean {
+const isSameDay = (date1: Date, date2: Date): boolean => {
   return date1.getDate() === date2.getDate();
-}
+};
 
-function isToday(date: Date): boolean {
+const isToday = (date: Date): boolean => {
   return new Date().getDate() === date.getDate();
-}
+};
 
-function generateHorizontalCalendarDates(days: number): Date[] {
+const generateHorizontalCalendarDates = (days: number = 365): Date[] => {
   const today = new Date();
   let result = [];
   for (let i = 0; i < days; i++) {
@@ -42,11 +57,16 @@ function generateHorizontalCalendarDates(days: number): Date[] {
   }
 
   return result;
-}
+};
 
-const HorizontalCalendar = ({ selectedDate, setSelectedDate }: Props) => {
+const HorizontalCalendar = ({
+  selectedDate,
+  setSelectedDate,
+  dateRange,
+  ...props
+}: Props) => {
   const dates: Date[] = useMemo(() => {
-    return generateHorizontalCalendarDates(14);
+    return generateHorizontalCalendarDates(dateRange);
   }, []);
 
   const onDatePress = (date: Date) => {
@@ -58,6 +78,17 @@ const HorizontalCalendar = ({ selectedDate, setSelectedDate }: Props) => {
     const monthNumber = item.getMonth() + 1;
     const dayString = getDayString(item);
     const isActive = isSameDay(selectedDate, item);
+
+    if (props.renderItem) {
+      return props.renderItem({
+        item,
+        dayNumber,
+        monthNumber,
+        dayString,
+        isActive,
+      });
+    }
+
     return (
       <TouchableOpacity
         onPress={() => onDatePress(item)}
@@ -126,6 +157,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 8,
+  },
+  renderItem: {},
+  backgroundWhite: {
+    backgroundColor: '#fff',
   },
 });
 

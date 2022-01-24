@@ -27,6 +27,15 @@ const [selectedDate, setSelectedDate] = useState(new Date());
 />;
 ```
 
+## Props
+
+| Props           | Description                                          | Required | Default |
+| --------------- | ---------------------------------------------------- | -------- | ------- |
+| selectedDate    | return selectedDate                                  | true     |         |
+| setSelectedDate | get active date                                      | true     |         |
+| dateRange       | show date from today to number of days in the future | false    | 365     |
+| renderItem      | render custom date item                              | false    | null    |
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
