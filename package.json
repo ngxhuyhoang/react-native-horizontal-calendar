@@ -1,6 +1,6 @@
 {
-  "name": "react-native-horizontal-calendar",
-  "version": "0.1.0",
+  "name": "rn-horizontal-calendar",
+  "version": "1.0.2",
   "description": "horizontal calendar",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -43,9 +43,6 @@
     "url": "https://github.com/ngxhuyhoang/react-native-horizontal-calendar/issues"
   },
   "homepage": "https://github.com/ngxhuyhoang/react-native-horizontal-calendar#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",

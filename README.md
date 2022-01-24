@@ -1,21 +1,30 @@
-# react-native-horizontal-calendar
+# rn-horizontal-calendar
 
 horizontal calendar
 
 ## Installation
 
 ```sh
-npm install react-native-horizontal-calendar
+npm install --save rn-horizontal-calendar
+```
+
+or
+
+```sh
+yarn add rn-horizontal-calendar
 ```
 
 ## Usage
 
-```js
-import { multiply } from "react-native-horizontal-calendar";
+```jsx
+const [selectedDate, setSelectedDate] = useState(new Date());
 
-// ...
-
-const result = await multiply(3, 7);
+<HorizontalCalendar
+  selectedDate={selectedDate}
+  setSelectedDate={(date) => {
+    setSelectedDate(date);
+  }}
+/>;
 ```
 
 ## Contributing
